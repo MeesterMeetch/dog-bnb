@@ -1,13 +1,21 @@
 {
-  "name": "ng-authDemo",
+  "name": "dog-b-and-b",
   "version": "0.0.0",
+  "homepage": "https://github.com/MeesterMeetch/dog-b-and-b",
   "authors": [
-    "Calvin Webster <calweb@gmail.com>"
+    "MeesterMeetch <mwhunt3@gmail.com>"
   ],
-  "description": "Simple demo using http://github.com/sahat/satellizer for auth",
-
+  "description": "We fetch local dog sitters near you",
   "keywords": [
-    "demo"
+    "dog",
+    "sitter",
+    "watch",
+    "b&b",
+    "bed",
+    "and",
+    "breakfast",
+    "airb&b",
+    "pup"
   ],
   "license": "MIT",
   "ignore": [
