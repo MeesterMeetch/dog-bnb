@@ -27,6 +27,11 @@
 
   <div ng-view class="fadeZoom"></div>
 
+
+  <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
+
+
   <!-- bower:js -->
   <script src="vendor/angular/angular.js"></script>
   <script src="vendor/angular-animate/angular-animate.js"></script>
@@ -50,6 +55,9 @@
   <script src="posts/posts.module.js"></script>
   <script src="posts/posts.postService.js"></script>
   <script src="posts/posts.controller.js"></script>
+  <script src="map/map.service.js"></script>
+  <script src="map/map.module.js"></script>
+  <script src="map/map.controller.js"></script>
   <script src="app.module.js"></script>
   <script src="home/navbar.js"></script>
   <script src="controllers/navbar.js"></script>

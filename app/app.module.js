@@ -19,4 +19,5 @@ angular.module('MyApp', [
     .otherwise({
       redirectTo: '/404'
     });
+
 });
