@@ -299,3 +299,23 @@ a {
             transform: scale3d(0.8, 0.8, 0.8); }
   50% {
     opacity: 1; } }
+#map-container {
+  height: 400px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0; }
+
+.ng-isolate-scope {
+  height: 400px;
+  width: 100%; }
+
+.angular-google-map {
+  height: 400px;
+  width: 100%; }
+
+.angular-google-map-container {
+  position: absolute;
+  height: 400px;
+  width: 100%; }

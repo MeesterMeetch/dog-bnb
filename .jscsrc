@@ -1,5 +1,5 @@
 {
-    "excludeFiles": ["node_modules/**", "bower_components/**"],
+    "excludeFiles": ["node_modules/**", "bower_components/**, app/vendor/**"],
 
     "requireCurlyBraces": [
         "if",
@@ -13,8 +13,8 @@
     "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
 
-    
-    "validateQuoteMarks": "'",
+
+
 
     "disallowMultipleLineStrings": true,
     "disallowMixedSpacesAndTabs": true,
@@ -54,7 +54,7 @@
         "requireParamTypes": true
     },
 
-    
+
 
     "disallowCommaBeforeLineBreak": null,
     "disallowDanglingUnderscores": null,
