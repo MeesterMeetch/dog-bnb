@@ -1,170 +1,214 @@
-// (function(window, document, undefined) {
-//   angular.module('map')
-//   .controller('mapController', function($scope,
-//     $auth, $alert, Account, PlaceService,
-//     $routeParams, uiGmapGoogleMapApi, $rootScope) {
-//       $scope.map = { center: {latitude: 45, longitude: -73 }, zoom: 8};
-//       // Do stuff with your $scope.
-//       // Note: Some of the directives require at least something to be defined originally!
-//       // e.g. $scope.markers = []
-//
-//       // uiGmapGoogleMapApi is a promise.
-//       // The "then" callback function provides the google.maps object.
-//       uiGmapGoogleMapApi.then(function(maps) {
-//
-//       });
-//   });
-// })(window, document);
+(function() {
+
+  angular
+    .module('map')
+    .controller('MapController', function($rootScope, $scope, uiGmapGoogleMapApi, MapService, $auth, $modal, $log) {
+      // Do stuff with $scope.
+
+      $scope.map = {
+          center: {
+              latitude: 38.8833,
+              longitude: -97.0167
+          },
+          zoom: 4,
+          showTraffic: false,
+          coords: [],
+          markers: [
+          ],
+          maxZoom: function(map) {
+            var maxZoom = 13;
+            if (map.getZoom() > maxZoom) { map.setZoom(maxZoom) };
+          },
+          events: {
+            dblclick: function (map, eventName, originalEventArgs) {
+                var e = originalEventArgs[0];
+                var lat = e.latLng.lat(), lon = e.latLng.lng();
+                var marker = {
+                    id: Date.now(),
+                    coords: {
+                        latitude: lat,
+                        longitude: lon
+                    },
+                    options: {
+                      animation: api.Animation.DROP,
+                    }
+                  };
+                $scope.map.markers.unshift(marker);
+                $scope.$apply();
+                console.log($scope.map.markers);
+                var element = angular.element(document.querySelector('.reviews'));
+                element.addClass('hide');
+                var secondElement = angular.element(document.querySelector('.reviewForm'));
+                secondElement.removeClass('hide');
+            },
+            zoom_changed: function (map, eventName, originalEventArgs) {
+                $scope.map.maxZoom(map)
+            }
+
+          }
+        }
+
+        $scope.clickMarker = function(marker) {
+          MapService.getSingleReview().success(function(reviews){
+            console.log(_.findWhere(reviews, {'latitude': marker.coords.latitude}));
+            $rootScope.individMarker = _.findWhere(reviews, {'latitude': marker.coords.latitude});
+            $scope.open('lg');
+            console.log($scope.individMarker);
+            return _.findWhere(reviews, {'latitude': marker.coords.latitude});
+          });
+        }
+
+        $scope.windowOptions = {
+          visible: false
+        };
+
+        MapService.getMarkers().then(function(marker) {
+          for (var i = 0; i < marker.length; i++) {
+            $scope.map.markers.push(marker[i].coords);
+          }
+        });
+
+        $scope.reloadMap = function() {
+          MapService.getMarkers().then(function(marker) {
+              $scope.map.markers = []
+            for (var i = 0; i < marker.length; i++) {
+              $scope.map.markers.push(marker[i].coords);
+            }
+          });
+        }
+
+        $scope.isAuthenticated = function() {
+          return $auth.isAuthenticated();
+        };
+
+        $scope.onClick = function() {
+          $scope.windowOptions.visible = !$scope.windowOptions.visible;
+        };
+        $scope.closeClick = function() {
+          $scope.windowOptions.visible = false;
+        };
+
+        var events = {
+
+        places_changed: function (searchBox) {
+        var place = searchBox.getPlaces();
+        if (!place || place == 'undefined' || place.length == 0) {
+            alert('Sorry that doesnt exist');
+            return;
+        }
+
+        $scope.map = {
+            center: {
+                latitude: place[0].geometry.location.lat(),
+                longitude: place[0].geometry.location.lng()
+            },
+            zoom: 7,
+            coords: [],
+            markers: [],
+            maxZoom: function(map) {
+              var maxZoom = 13;
+              if (map.getZoom() > maxZoom) { map.setZoom(maxZoom) };
+            },
+            events: {
+              dblclick: function (map, eventName, originalEventArgs) {
+                  var e = originalEventArgs[0];
+                  var lat = e.latLng.lat(), lon = e.latLng.lng();
+                  var marker = {
+                      id: Date.now(),
+                      coords: {
+                          latitude: lat,
+                          longitude: lon
+                      },
+                      options: {
+                        animation: api.Animation.DROP,
+                      }
+                  };
+
+                  $scope.map.markers.unshift(marker);
+                  $scope.$apply();
+                  console.log($scope.map.markers);
+                  var element = angular.element(document.querySelector('.reviews'));
+                  element.addClass('hide');
+                  var secondElement = angular.element(document.querySelector('.reviewForm'));
+                  secondElement.removeClass('hide');
+              },
+              zoom_changed: function (map, eventName, originalEventArgs) {
+                  $scope.map.maxZoom(map)
+              }
+            }
+          };
+          MapService.getMarkers().then(function(marker) {
+            for (var i = 0; i < marker.length; i++) {
+              console.log(marker[i].title);
+              $scope.title = marker[i].title;
+              $scope.map.markers.push(marker[i].coords);
+            }
+          });
+
+          $scope.reloadMap = function() {
+            MapService.getMarkers().then(function(marker) {
+                $scope.map.markers = []
+              for (var i = 0; i < marker.length; i++) {
+                $scope.map.markers.push(marker[i].coords);
+              }
+            });
+          }
+
+          $scope.isAuthenticated = function() {
+            return $auth.isAuthenticated();
+          };
+        }
+      };
+
+      $scope.searchbox = {
+        template: 'searchbox.tpl.html',
+        events: events
+        };
+
+        var api;
+        uiGmapGoogleMapApi.then(function(googleMaps) {
+          api = googleMaps;
+        });
+
+        uiGmapGoogleMapApi.then(function(maps) {
+
+        });
+
+        var watchCallback = function() {
+          console.log("hello from maps");
+        }
+
+        $scope.$on('review:created', watchCallback);
 
 
+      $scope.animationsEnabled = true;
 
-// var lat;
-// var long;
-//
-// (function() {
-//     // 'use strict';
-//
-//
-// angular.module('places')
-//   .controller('PlacesController', function($scope, $auth, $alert, Account, PlaceService, $routeParams, $sce, uiGmapGoogleMapApi, $rootScope) {
-//     Account.getProfile()
-//       .success(function(data) {
-//         console.log(data.displayName);
-//         $rootScope.user = data;
-//         $rootScope.username = data.displayName
-//       })
-//       .error(function(error) {
-//         $alert({
-//           content: error.message,
-//           animation: 'fadeZoomFadeDown',
-//           type: 'material',
-//           duration: 3
-//         });
-//       });
-//
-//     $scope.getCurrentLocation = function() {
-//       navigator.geolocation.getCurrentPosition(function(position) {
-//         lat = position.coords.latitude;
-//         long = position.coords.longitude;
-//         changeLocation(position.coords.latitude, position.coords.longitude);
-//       });
-//     }
-//
-//     uiGmapGoogleMapApi.then(function(map) {
-//       $scope.map = {
-//           "center": {
-//               "latitude": 32.7833,
-//               "longitude": -79.931051
-//           },
-//           "zoom": 8
-//       }; //TODO:  set location based on users current gps location
-//       });
-//
-//
-//       $scope.marker = {
-//           id: 0,
-//           coords: {
-//               latitude: 52.47491894326404,
-//               longitude: -1.8684210293371217
-//           },
-//           options: { draggable: true },
-//           events: {
-//               dragend: function (marker, eventName, args) {
-//
-//                   $scope.marker.options = {
-//                       draggable: true,
-//                       labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-//                       labelAnchor: "100 0",
-//                       labelClass: "marker-labels"
-//                   };
-//               }
-//           }
-//       };
-//
-//       var changeLocation = function(lat, long) {
-//
-//         PlaceService.getBars(lat, long).then(function(data) {
-//           $scope.places = data;
-//         });
-//         $scope.map = {
-//             "center": {
-//                 "latitude": lat,
-//                 "longitude": long
-//             },
-//             "zoom": 18
-//         };
-//         $scope.marker = {
-//             id: 0,
-//             coords: {
-//                 latitude: lat,
-//                 longitude: long
-//             }
-//         };
-//       }
-//       var events = {
-//           places_changed: function (searchBox) {
-//               var place = searchBox.getPlaces();
-//               lat = place[0].geometry.location.lat();
-//               long = place[0].geometry.location.lng();
-//               if (!place || place == 'undefined' || place.length == 0) {
-//                   return;
-//               }
-//
-//               PlaceService.getBars(lat, long).then(function(data) {
-//                 $scope.places = data;
-//
-//               });
-//
-//               if($routeParams.placeId) {
-//                 PlaceService.getSingleBar($routeParams.placeId).then(function(listing) {
-//                 console.log(listing);
-//                 $scope.place = listing;
-//                 });
-//               }
-//
-//               $scope.map = {
-//                   "center": {
-//                       "latitude": place[0].geometry.location.lat(),
-//                       "longitude": place[0].geometry.location.lng()
-//                   },
-//                   "zoom": 18
-//               };
-//               $scope.marker = {
-//                   id: 0,
-//                   coords: {
-//                       latitude: place[0].geometry.location.lat(),
-//                       longitude: place[0].geometry.location.lng()
-//                   }
-//               };
-//
-//           }
-//       };
-//
-//       if($routeParams.placeId) {
-//       PlaceService.getSingleBar($routeParams.placeId, lat, long).then(function(listing) {
-//         $scope.place = listing;
-//         $scope.reviews = listing.reviews;
-//         $scope.trustSrc = function(src) {
-//           return $sce.trustAsResourceUrl(src);
-//         }
-//         console.log($scope.trustSrc(listing.website))
-//       });
-//       }
-//
-//       $scope.searchbox = { template: 'searchbox.tpl.html', events: events, parentdiv:'searchBoxParent' };
-//
-//
-//     $scope.createComment = function (newComment) {
-//         PlaceService.createComment(newComment);
-//     };
-//
-//     var watchCallback = function () {
-//       PlaceService.getComments().success(function (comments) {
-//         $scope.comments = comments;
-//       });
-//     };
-//
-//     $scope.$on('comment:created', watchCallback);
-//
-//   });
-// })();
+      $scope.open = function (size) {
+
+      console.log('hi');
+
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: '../reviews/views/modal.html',
+        controller: 'ModalInstanceCtrl',
+        size: size
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+  })
+
+    .controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+
+      $scope.close = function () {
+        $modalInstance.close($scope.selected);
+      };
+
+    });
+
+})();

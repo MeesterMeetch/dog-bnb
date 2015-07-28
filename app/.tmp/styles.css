@@ -1,13 +1,7 @@
-html,
-body,
-ul,
-ol {
-  margin: 0;
-  padding: 0; }
-
 body {
   font-family: 'Open Sans', sans-serif;
-  background: #e4e7ec; }
+  background: #e4e7ec;
+  height: 100vh; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
@@ -43,10 +37,10 @@ a {
 
 .navbar-default .navbar-brand {
   color: #fff;
-  background-color: #ce832c; }
+  background-color: #885A3B; }
 
 .navbar-default .navbar-brand:hover {
-  color: #ce832c;
+  color: #885A3B;
   background-color: #fff; }
 
 .navbar-brand {
@@ -184,6 +178,93 @@ a {
 .btn .fa {
   margin-right: 5px; }
 
+.reviewForm input, .reviewForm textarea {
+  display: block;
+  margin: 20px 0px 20px 0px; }
+
+.reviewForm input {
+  width: 60%; }
+
+.reviewForm textarea {
+  height: 250px;
+  width: 95%; }
+
+.titleRating input {
+  display: inline-block;
+  margin-right: 50px; }
+
+.titleRating select {
+  display: inline-block; }
+
+.singleReview p {
+  margin-bottom: 30px; }
+
+.reviewRightAlign {
+  text-align: right; }
+
+.logInContainer {
+  width: 45%;
+  background-color: white;
+  margin-top: 100px; }
+
+.homeMap {
+  width: 90%; }
+
+.reviewSidebar {
+  height: 500px;
+  overflow: scroll;
+  clear: right; }
+
+.hide {
+  display: none; }
+
+#welcome {
+  float: right; }
+
+.mustLogin {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center; }
+
+.oopsButton {
+  margin-top: 25px; }
+
+.video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
+.filterSearch {
+  float: right;
+  width: 50%; }
+
+.modal-content {
+  padding: 10px 40px 10px 40px; }
+
 /*********************
 * Social Buttons
 *********************/
@@ -266,6 +347,13 @@ a {
   color: #fff;
   background-color: #125acd; }
 
+.angular-google-map-container {
+  height: 500px; }
+
+.mapSearchBox {
+  width: 60%;
+  margin-top: .4rem; }
+
 /*********************
 * Animations
 *********************/
@@ -299,23 +387,3 @@ a {
             transform: scale3d(0.8, 0.8, 0.8); }
   50% {
     opacity: 1; } }
-#map-container {
-  height: 400px;
-  width: 100%;
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 0; }
-
-.ng-isolate-scope {
-  height: 400px;
-  width: 100%; }
-
-.angular-google-map {
-  height: 400px;
-  width: 100%; }
-
-.angular-google-map-container {
-  position: absolute;
-  height: 400px;
-  width: 100%; }

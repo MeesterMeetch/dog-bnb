@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div  ng-controller="ProfileController" class="panel-heading">{{ user.displayName }}'s Reviews</div>
+      <div class="panel-body">
+        <div class="row">
+          <div>
+          <div class="col-sm-12 reviews">
+          <div ng-controller="ReviewsController as ReviewsCtrl" ng-include="'../../reviews/views/review.html'">
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

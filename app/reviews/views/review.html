@@ -1,0 +1,19 @@
+<div ng-show="ReviewsCtrl.isLocationReviews()">
+  <div ng-controller="ProfileController" class="singleReview" ng-repeat="r in ReviewsCtrl.reviews" ng-hide="r.user !== user.displayName">
+  <h2>{{r.title}}</h2>
+  <p>by <strong>{{ r.user }}</strong></p>
+  <p>{{r.review}}</p>
+  <p class="reviewRightAlign">{{r.rating}} / 5</p>
+  <p>{{r.coords.id | date:'medium'}}</p>
+  <button class="btn btn-danger" ng-if="r.user === user.displayName" ng-click="ReviewsCtrl.deleteReview(r._id)">Delete</button>
+  </div>
+</div>
+<div ng-show="ReviewsCtrl.isLocationHome()" class="singleReview" ng-repeat="r in ReviewsCtrl.reviews | filter:searchFilter">
+  <h2>{{r.title}}</h2>
+  <p ng-controller="ProfileController">by <strong>{{ r.user }}</strong></p>
+  <p>{{r.review}}</p>
+  <p class="reviewRightAlign">{{r.rating}} / 5</p>
+  <p>{{r.coords.id | date:'medium'}}</p>
+  <p class="hide">{{r.coords}}</p>
+  <button class="btn btn-danger" ng-if="r.user === user.displayName" ng-click="ReviewsCtrl.deleteReview(r._id)">Delete</button>
+</div>

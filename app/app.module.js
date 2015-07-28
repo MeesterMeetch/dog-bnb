@@ -5,9 +5,11 @@ angular.module('MyApp', [
   'mgcrea.ngStrap',
   'auth',
   'profile',
-  'posts',
+  'reviews',
+  'uiGmapgoogle-maps',
   'map',
-  'MapCtrl'
+  'myReviews',
+  'lodash'
 ])
 
 .config(function($routeProvider) {
@@ -21,5 +23,9 @@ angular.module('MyApp', [
     .otherwise({
       redirectTo: '/404'
     });
-
 });
+angular
+    .module('lodash', [])
+    .factory('_', function($window) {
+      return $window._;
+    });

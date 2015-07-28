@@ -1,0 +1,16 @@
+<div class="reviewForm" ng-controller = "ReviewsController as ReviewsCtrl" >
+  <h2>Add a Review</h2>
+  <form name="reviewForm" novalidate>
+    <div class="titleRating">
+      <input type="text" name="title" value="" placeholder="Title" ng-model="ReviewsCtrl.review.title" required/>
+      <label for="rating">Rating </label>
+      <select name="rating" ng-model="ReviewsCtrl.review.rating" required>
+        <option ng-repeat="rating in ReviewsCtrl.ratingOptions" value="{{rating}}">{{rating}}</option>
+      </select>
+    </div>
+    <textarea name="review" value="" placeholder="Review" ng-model="ReviewsCtrl.review.review" required></textarea>
+    <input class="hide" ng-value="ReviewsCtrl.review.user = user.displayName" ng-model="ReviewsCtrl.review.user"/>
+    <button type="submit" name="reviewForm" ng-click="ReviewsCtrl.getReview(map.markers[0], ReviewsCtrl.review)">Submit</button>
+    <button type="button" ng-click="ReviewsCtrl.cancelPost(); reloadMap()">Cancel</button>
+  </form>
+</div>
