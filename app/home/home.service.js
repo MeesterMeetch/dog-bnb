@@ -8,11 +8,6 @@
     return $http.get('/api/me');
   };
 
-  var getSitters = function() {
-    console.log("Obtaining Sitters (from home.service)!!!!!!!!!");
-    return $http.get('/api/allUsers');
-  };
-
   return {
     getProfile: getProfile,
   };

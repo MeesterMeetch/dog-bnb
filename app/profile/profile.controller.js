@@ -9,9 +9,10 @@ angular.module('profile')
       Account.getProfile()
         .success(function(data) {
           $scope.user = data;
+          $rootScope.username = data.username;
         })
         .error(function(error) {
-          $alert({
+          $modal.open({
             content: error.message,
             animation: 'fadeZoomFadeDown',
             type: 'material',
@@ -20,16 +21,20 @@ angular.module('profile')
         });
     };
 
-    $scope.logProfile = function () {
-      console.log($scope.user.displayName);
-      return $scope.user.displayName + "";
-    };
+    //  commenting out to troubleshoot
+    // $scope.logProfile = function () {
+    //   console.log($scope.user.displayName);
+    //   return $scope.user.displayName + "";
+    // };
 
 
     /**
      * Update user's profile information.
      */
     $scope.updateProfile = function() {
+      var user = $scope.user;
+      Account.addSitter(user);
+
       Account.updateProfile({
         displayName: $scope.user.displayName,
         email: $scope.user.email,
