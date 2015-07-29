@@ -1,11 +1,11 @@
 <!-- Sign up as Sitter Below -->
 
-<div class="container-fluid dogSitterSignup">
+<div class="container-fluid dogSitterSignup" ng-controller="OwnerSignupCtrl">
 <div class="row">
   <div class="center-form panel">
     <div class="panel-body">
       <h2 class="text-center">Sign up as a Sitter</h2>
-      <form method="post" ng-submit="signup()" name="signupForm">
+      <form method="post" ng-submit="sitterSignup()" name="signupForm">
 
         <!-- name -->
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
