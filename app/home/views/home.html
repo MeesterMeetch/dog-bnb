@@ -1,9 +1,9 @@
 <div class="container homeMap">
   <div ng-controller="ProfileController" class="panel panel-default">
-    <div class="panel-heading">Home Page<span id="welcome">Welcome {{user.displayName}}</span></div>
+    <div class="panel-heading">Hosts<span id="greeting">{{user.displayName}}</span></div>
     <div class="panel-body">
-      <div class="row" ng-controller="MapController">
-        <div class="col-sm-6">
+      <div class="row" ng-controller="ProfileController">
+        <div class="col-sm-7">
           <div id="map_canvas">
             <div >
             <script type="text/ng-template" id="searchbox.tpl.html">
@@ -11,23 +11,25 @@
               </script>
                <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" events="map.events">
                  <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_CENTER"></ui-gmap-search-box>
-                   <ui-gmap-marker click="clickMarker(m)" ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="m.options">
-                     <ui-gmap-window options="windowOptions" closeClick="closeClick()">
-                      <div><a href="http://theironyard.com/">{{title}}</a></div>
-                      </ui-gmap-window>
+                   <ui-gmap-marker coords="user.sitterLocation.coords" idkey="user._id" ng-repeat="user in users" markerlabel="user.displayName">
                    </ui-gmap-marker>
                </ui-gmap-google-map>
             </div>
           </div>
         </div>
 
-          <div class="col-sm-6 reviews">
-            <input type="text" name="name" value="" placeholder="Keyword..." class="filterSearch" ng-model="searchFilter">
-            <div ng-controller="ReviewsController as ReviewsCtrl" class="reviewSidebar" ng-include="'../../reviews/views/review.html'"></div>
-          </div>
-          <div class="col-sm-4 hide reviewForm">
-            <div ng-if='isAuthenticated()' ng-include="'../../reviews/views/form.html'"></div>
-            <div ng-if='!isAuthenticated()' ng-include="'../../reviews/views/mustLogin.html'"></div>
+          <div class="col-sm-5 sitters">
+            <!-- <input type="text" name="name" value="" placeholder="Keyword..." class="filterSearch" ng-model="searchFilter"> -->
+            <div class="sitterSidebar">
+              <h3>Name:<strong>{{user.sitterName}}</strong></h3>
+              <ul>
+                <li class="sitterPhone">Phone: {{phone}}</li>
+                <li class="sitterLocation">Location:{{user.userLocation.address}}</li>
+                <li class="sitterAvailability">Availability:{{user.availability}}</li>
+                <li class="sitterRates">Rate:{{user.rate}}</li>
+              </ul>
+            </div>
+
           </div>
 
       </div>

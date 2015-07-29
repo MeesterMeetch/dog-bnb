@@ -32,6 +32,7 @@ function createToken(user) {
 router.route('/login')
   .post(function(req, res, next) {
     User.findOne({ email: req.body.email }, '+password', function(err, user, next) {
+      console.log('IM IN LOGIN', req);
       if (err) return next(err);
       if (!user) {
         return res.status(401).send({ message: 'Wrong email and/or password' });
@@ -52,7 +53,7 @@ router.route('/login')
  */
  router.route('/signup')
   .post(function(req, res) {
-    console.log("Hi");
+    console.log("Hi FROM THE CONSOLE", req.body);
     User.findOne({ email: req.body.email }, function(err, existingUser) {
       if (existingUser) {
         return res.status(409).send({ message: 'Email is already taken' });

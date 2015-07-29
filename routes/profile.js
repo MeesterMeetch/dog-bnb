@@ -4,11 +4,23 @@ var User = require('../entities/User');
 var config = require('../config');
 var ensureAuthenticated = require('./helpers').ensureAuthenticated;
 
+
 /*
  |--------------------------------------------------------------------------
  | GET /api/me
  |--------------------------------------------------------------------------
  */
+router.route('/allUsers')
+  .get(function(req,res,next){
+    console.log("SHOW ME");
+    User.findById({}, function(err, user) {
+      if(err) {
+        res.send(err);
+      }
+      res.send(user);
+    })
+  })
+
 router.route('/me')
   .all(ensureAuthenticated)
   .get(function(req, res) {

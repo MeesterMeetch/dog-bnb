@@ -6,7 +6,7 @@ angular.module('auth')
           password: $scope.password
         })
         .then(function(res) {
-          console.log(res.data);
+          // console.log(res.data);
           $alert({
             content: 'You have successfully logged in',
             animation: 'fadeZoomFadeDown',
@@ -26,7 +26,7 @@ angular.module('auth')
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function(res) {
-          console.log(res.data);
+          // console.log(res.data);
           $alert({
             content: 'You have successfully logged in',
             animation: 'fadeZoomFadeDown',

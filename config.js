@@ -1,6 +1,6 @@
 module.exports = {
   TOKEN_SECRET: process.env.TOKEN_SECRET || 'A hard to guess string',
-  MONGO_URI: 'mongodb://meestermeetch:DiscGolf1@ds043082.mongolab.com:43082/dog-bnb' || process.env.MONGO_URI || 'mongodb://localhost:27017/test',
+  MONGO_URI: 'mongodb://localhost:27017/test',
   FACEBOOK_SECRET: process.env.FACEBOOK_SECRET || 'Facebook App Secret',
   FOURSQUARE_SECRET: process.env.FOURSQUARE_SECRET || 'Foursquare Client Secret',
   GOOGLE_SECRET: process.env.GOOGLE_SECRET || 'lyVvmXolLMUTirO52DuA5O9U',
@@ -12,3 +12,5 @@ module.exports = {
   TWITTER_CALLBACK: process.env.TWITTER_CALLBACK || 'Twitter Callback Url',
   YAHOO_SECRET: process.env.YAHOO_SECRET || 'Yahoo Client Secret'
 };
+
+ // 'mongodb://meestermeetch:DiscGolf1@ds043082.mongolab.com:43082/dog-bnb' ||

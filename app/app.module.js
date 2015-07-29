@@ -5,9 +5,10 @@ angular.module('MyApp', [
   'mgcrea.ngStrap',
   'auth',
   'profile',
-  'reviews',
+  'home',
+  // 'reviews',
   'uiGmapgoogle-maps',
-  'map',
+  // 'map',
   'myReviews',
   'lodash'
 ])
