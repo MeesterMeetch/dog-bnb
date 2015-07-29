@@ -29,7 +29,9 @@ router.route('/me')
     });
   })
   .put(function(req, res) {
+    console.log('this is the req.body mitch', req.body);
     User.findById(req.user, function(err, user) {
+      console.log('user in endpoint', user);
       if (!user) {
         return res.status(400).send({ message: 'User not found' });
       }
@@ -37,6 +39,7 @@ router.route('/me')
       // user.newProperty = req.body.newProperty || user.newProperty
       user.displayName = req.body.displayName || user.displayName;
       user.email = req.body.email || user.email;
+
       user.save(function(err) {
         res.status(200).end();
       });

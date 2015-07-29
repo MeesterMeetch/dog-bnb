@@ -11,9 +11,9 @@ angular.module('profile')
         return $http.delete('/api/me');
       },
       addSitter: function (user) {
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({address: user.sitterLocation.address}, function (result) {
-          user.sitterLocation.coords = {
+        var geocoder = new google.maps.Geocoder()
+        geocoder.geocode({address: user.address}, function (result) {
+          user.coords = {
             latitude: result[0].geometry.location.lat(),
             longitude: result[0].geometry.location.lng()
           };

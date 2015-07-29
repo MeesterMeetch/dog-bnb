@@ -33,7 +33,7 @@ angular.module('profile')
      */
     $scope.updateProfile = function() {
       var user = $scope.user;
-      Account.addSitter(user);
+      // Account.addSitter(user);
 
       Account.updateProfile({
         displayName: $scope.user.displayName,
@@ -46,16 +46,17 @@ angular.module('profile')
         rate: $scope.user.rate,
         picture: $scope.user.picture,
         availability: $scope.user.availability,
-        sitterLocation: {address: $scope.user.sitterLocation.address, coords: {latitude: '', longitude: ''}},
+        sitterLocation: {address: $scope.user.address, coords: {latitude: '', longitude: ''}},
       }).then(function() {
         $alert({
           content: 'Profile has been updated',
           animation: 'fadeZoomFadeDown',
           type: 'material',
           duration: 3
-        }).error(function(err) {
-          console.log('profile.controller.js updateProfile', err);
         });
+        // }).error(function(err) {
+        //   console.log('profile.controller.js updateProfile', err);
+        // });
       });
     };
 

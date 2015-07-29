@@ -3,7 +3,7 @@
     <div class="panel-heading">Profile</div>
     <div class="panel-body">
       <legend><i class="ion-clipboard"></i> Edit My Profile</legend>
-      <form method="post" ng-submit="updateProfile()">
+      <form ng-submit="updateProfile()">
         <div class="form-group">
           <label class="control-label">Profile Picture</label>
           <img class="profile-picture" ng-src="{{user.picture || 'http://www.fillmurray.com/200/200'}}">

@@ -28,8 +28,8 @@
     .controller('HomeController', function(HomeService, Account, $scope, $rootScope, $location, $routeParams, $auth) {
         $scope.map = {
           center: {
-            latitude: 32.7833,
-            longitude: -79.931051
+            latitude: 34.80,
+            longitude: -80.50
           },
           zoom: 15,
           scrollwheel: false
