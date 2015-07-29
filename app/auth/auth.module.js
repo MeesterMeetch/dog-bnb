@@ -7,11 +7,12 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
       })
       .when('/signup', {
         templateUrl: 'auth/views/signup.html',
-        controller: 'SignupCtrl'
+        // controller: 'SignupCtrl'
       })
       .when('/sitterSignup', {
         templateUrl: 'auth/views/sitterSignup.html',
-        controller: 'SitterSignupCtrl'
+        // controller: 'SitterSignupCtrl'
+        controller: 'SignupCtrl'
       })
       .when('/ownerSignup', {
         templateUrl: 'auth/views/ownerSignup.html',
