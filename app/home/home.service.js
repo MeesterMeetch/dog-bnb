@@ -14,6 +14,7 @@
 
   return {
     getProfile: getProfile,
+    getAllSitters: getAllSitters
   };
 });
 
