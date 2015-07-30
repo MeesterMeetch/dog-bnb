@@ -64,6 +64,15 @@ router.route('/login')
         displayName: req.body.displayName,
         email: req.body.email,
         password: req.body.password,
+        dogsName: req.body.dogsName || "Clifford",
+        phone: req.body.phone || "999-999-9999",
+        vetPhone: req.body.vetPhone || "999-999-9999",
+        sitter: req.body.sitter || "Sally",
+        address: req.body.address || "302 Fleming St, Key West, FL 33040",
+        rate: req.body.rate || "$1",
+        picture: req.body.picture || "http://placehold.it/140x150",
+        availability: req.body.availability || "Tuesday Wednesday Thursday",
+        sitterLocation: req.body.sitterLocation || "302 Fleming St, Key West, FL 33040",
       });
       user.save(function() {
         res.send({ token: createToken(user) });

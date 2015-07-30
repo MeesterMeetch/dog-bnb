@@ -18,8 +18,8 @@ router.route('/allUsers')
         res.send(err);
       }
       res.send(user);
-    })
-  })
+    });
+  });
 
 router.route('/me')
   .all(ensureAuthenticated)
@@ -35,10 +35,24 @@ router.route('/me')
       if (!user) {
         return res.status(400).send({ message: 'User not found' });
       }
+      //################
+      // HERE!!!!
+      //ADD REQ.BODY PROPERTIES FOR ALL THE SO THEY’LL SAVE !!!! -MWH
       // add any new user properties here as well as entities/User.js and routes/profile.js
       // user.newProperty = req.body.newProperty || user.newProperty
+      //###############
+
       user.displayName = req.body.displayName || user.displayName;
       user.email = req.body.email || user.email;
+      user.dogsName = req.body.dogsName || user.dogsName;
+      user.phone = req.body.phone || user.phone;
+      user.vetPhone = req.body.vetPhone || user.vetPhone;
+      user.sitter = req.body.sitter || user.sitter;
+      user.address = req.body.address || user.address;
+      user.rate = req.body.rate || user.rate;
+      user.picture = req.body.picture || user.picture;
+      user.availability = req.body.availability || user.availability;
+      user.sitterLocation = req.body.sitterLocation || user.sitterLocation;
 
       user.save(function(err) {
         res.status(200).end();
