@@ -8,13 +8,8 @@
     return $http.get('/api/me');
   };
 
-  var getAllSitters = function() {
-    return $http.get('/allUsers');
-  };
-
   return {
     getProfile: getProfile,
-    getAllSitters: getAllSitters
   };
 });
 
