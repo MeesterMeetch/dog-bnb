@@ -7,8 +7,9 @@ angular.module('auth')
         phone: $scope.phone,
         rate: $scope.rate,
         address: $scope.address,
+        availability: $scope.availability,
         password: $scope.password,
-        sitter: false
+        isSitter: true
       }).catch(function(response) {
         if (typeof response.data.message === 'object') {
           angular.forEach(response.data.message, function(message) {

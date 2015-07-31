@@ -1,4 +1,3 @@
-
 angular.module('profile')
   .controller('ProfileController', function($scope, $rootScope, $auth, $alert, $modal, Account) {
 
@@ -10,6 +9,25 @@ angular.module('profile')
         .success(function(data) {
           $scope.user = data;
           $rootScope.username = data.username;
+          // dogsName = data.dogsName;
+          // phone = data.phone;
+          // vetPhone = data.vetPhone;
+          // sitter = data.sitter;
+          // address = data.address;
+          // rate = data.rate;
+          // picture = data.picture;
+          // availability = data.availability;
+          // sitterLocation = {address: data.address, coords: {latitude: '', longitude: ''}};
+          // testing
+          $rootScope.dogsName = data.dogsName;
+          $rootScope.phone = data.phone;
+          $rootScope.vetPhone = data.vetPhone;
+          $rootScope.sitter = data.sitter;
+          $rootScope.address = data.address;
+          $rootScope.rate = data.rate;
+          $rootScope.picture = data.picture;
+          $rootScope.availability = data.availability;
+          $rootScope.sitterLocation = {address: data.address, coords: {latitude: '', longitude: ''}};
         })
         .error(function(error) {
           $modal.open({
@@ -21,11 +39,11 @@ angular.module('profile')
         });
     };
 
-    //  commenting out to troubleshoot
-    // $scope.logProfile = function () {
-    //   console.log($scope.user.displayName);
-    //   return $scope.user.displayName + "";
-    // };
+
+   $scope.logProfile = function () {
+     console.log($scope.user.displayName);
+    //  return $scope.user.displayName + "";
+   };
 
 
     /**
@@ -46,8 +64,9 @@ angular.module('profile')
         rate: $scope.user.rate,
         picture: $scope.user.picture,
         availability: $scope.user.availability,
-        sitterLocation: {address: $scope.user.address, coords: {latitude: '', longitude: ''}},
-      }).then(function() {
+        sitterLocation: {address: $scope.user.address, coords: {latitude: '', longitude: ''}}
+      }).success(function() {
+        console.log("SUCCESSFUL THINGS");
         $alert({
           content: 'Profile has been updated',
           animation: 'fadeZoomFadeDown',
@@ -55,7 +74,7 @@ angular.module('profile')
           duration: 3
         });
         // }).error(function(err) {
-        //   console.log('profile.controller.js updateProfile', err);
+        //   console.log('I HAVE BUBBLED UP', err);
         // });
       });
     };

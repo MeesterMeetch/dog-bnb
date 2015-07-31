@@ -20,7 +20,7 @@ angular.module('profile')
           console.log('user INSIDE', user);
 
           return $http.put('/api/me', user).then(function (data) {
-            console.log('hello, user data', data);
+            console.log('hello, you made it user data', data);
             $rootScope.$broadcast('sitterCoords:added');
           });
         });

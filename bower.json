@@ -38,6 +38,8 @@
     "angular-modal-service": "~0.6.7",
     "bootstrap": "~3.3.5",
     "angular-google-maps": "~2.1.5",
-    "lodash": "~3.10.0"
+    "lodash": "~3.10.0",
+    "jsjws": "~3.2.2",
+    "angular": "~1.4.3"
   }
 }

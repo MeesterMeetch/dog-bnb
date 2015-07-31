@@ -1,6 +1,8 @@
 module.exports = {
   TOKEN_SECRET: process.env.TOKEN_SECRET || 'A hard to guess string',
   MONGO_URI: process.env.MONGOLAB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/test',
+  // MONGO_URI: 'mongodb://meestermeetch:DiscGolf1@ds043082.mongolab.com:43082/dog-bnb' || process.env.MONGO_URI || 'mongodb://localhost:27017/test',
+  // MONGO_URI: process.env.MONGOLAB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/test',
   // MONGO_URI: 'mongodb://localhost:27017/test',
   FACEBOOK_SECRET: process.env.FACEBOOK_SECRET || 'Facebook App Secret',
   FOURSQUARE_SECRET: process.env.FOURSQUARE_SECRET || 'Foursquare Client Secret',
@@ -15,3 +17,4 @@ module.exports = {
 };
 
  // 'mongodb://meestermeetch:DiscGolf1@ds043082.mongolab.com:43082/dog-bnb' ||
+//  'mongodb://heroku_2xx4q98k:tp89cq86nq3q67q6i46kjlbo7r@ds031922.mongolab.com:31922/heroku_2xx4q98k' ||

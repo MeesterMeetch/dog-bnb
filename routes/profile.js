@@ -13,13 +13,15 @@ var ensureAuthenticated = require('./helpers').ensureAuthenticated;
 router.route('/allUsers')
   .get(function(req,res,next){
     console.log("SHOW ME");
-    User.findById({}, function(err, user) {
+    User.findById({}, function(err, users) {
       if(err) {
         res.send(err);
       }
-      res.send(user);
+      res.send(users);
     });
   });
+
+
 
 router.route('/me')
   .all(ensureAuthenticated)
@@ -44,6 +46,7 @@ router.route('/me')
 
       user.displayName = req.body.displayName || user.displayName;
       user.email = req.body.email || user.email;
+      user.username = req.body.username || user.username;
       user.dogsName = req.body.dogsName || user.dogsName;
       user.phone = req.body.phone || user.phone;
       user.vetPhone = req.body.vetPhone || user.vetPhone;
@@ -55,9 +58,34 @@ router.route('/me')
       user.sitterLocation = req.body.sitterLocation || user.sitterLocation;
 
       user.save(function(err) {
+        console.log('I HAVE MESSED UP', err);
         res.status(200).end();
       });
     });
   });
+
+  ////////get only sitters///////////
+ router.route('/sitters')
+  .get(function (req, res) {
+    User.find({}, function (err,users) {
+      var sitters = users.filter(function(el) {
+        return el.sitter === true;
+      });
+      res.send(sitters);
+    });
+  });
+
+
+  ////////get only owners///////////
+ router.route('/owners')
+  .get(function (req, res) {
+    User.find({}, function (err,users) {
+      var owners = users.filter(function(el) {
+        return el.owners === true;
+      });
+      res.send(owners);
+    });
+  });
+
 
 module.exports = router;

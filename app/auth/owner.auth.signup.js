@@ -4,7 +4,7 @@ angular.module('auth')
       $auth.signup({
         displayName: $scope.displayName,
         email: $scope.email,
-        dogsName: $scope.dogName,
+        dogsName: $scope.dogsName,
         phone: $scope.phone,
         vetPhone: $scope.vetNumber,
         password: $scope.password,
@@ -38,8 +38,9 @@ angular.module('auth')
         phone: $scope.phone,
         rate: $scope.rate,
         address: $scope.address,
+        availability: $scope.availability,
         password: $scope.password,
-        sitter: true
+        isSitter: true
       }).catch(function(response) {
         if (typeof response.data.message === 'object') {
           angular.forEach(response.data.message, function(message) {
