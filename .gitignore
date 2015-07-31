@@ -2,4 +2,3 @@ node_modules
 app/vendor
 .DS_Store
 .sass-cache/
-node_modules/.bin
