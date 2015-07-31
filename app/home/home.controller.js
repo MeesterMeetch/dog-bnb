@@ -34,5 +34,10 @@
           zoom: 15,
           scrollwheel: false
         };
+        new  HomeService().then(function(sitters) {
+            console.log("Obtaining Sitters!!!!!!!!!!");
+            console.log(sitters.data);
+            $scope.sitters = sitters.data;
+          });
     });
 }());
