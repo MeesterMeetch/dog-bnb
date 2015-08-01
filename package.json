@@ -1,7 +1,6 @@
 {
   "name": "satellizer-server-example",
   "main": "server.js",
-  "private": true,
   "engines": {
     "node": "0.12.2",
     "npm": "2.13.1"
