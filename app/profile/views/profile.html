@@ -1,63 +1,112 @@
-<div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">Profile</div>
-    <div class="panel-body">
-      <legend><i class="ion-clipboard"></i> Edit My Profile</legend>
-      <form ng-submit="updateProfile()">
-        <div class="form-group">
-          <label class="control-label">Profile Picture</label>{{user | json}}
-          <img class="profile-picture" ng-src="{{user.picture || 'http://www.fillmurray.com/200/200'}}">
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-person"></i> Display Name</label>
-          <input type="text" class="form-control" ng-model="user.displayName" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-at"></i> Email Address</label>
-          <input type="email" class="form-control" ng-model="user.email" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-person-add"></i> Dog's Name</label>
-          <input type="dogsName" class="form-control" ng-model="user.dogsName" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-ios-telephone-outline"></i> Phone Number</label>
-          <input type="tel" class="form-control" ng-model="user.phone" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-ios-telephone"></i> Vet Phone Number</label>
-          <input type="tel" class="form-control" ng-model="user.vetPhone" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-ios-home-outline"></i> Address</label>
-          <input type="text" class="form-control" ng-model="user.address" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-cash"></i> $ Rate</label>
-          <input type="text" class="form-control" ng-model="user.rate" />
-        </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-ios-calendar-outline"></i> Availability</label>
-          <input type="text" class="form-control" ng-model="user.availability" />
-        </div>
-        <button class="btn btn-lg btn-success">Update Information</button>
-      </form>
+<div class="profile-wrapper">
+  <div class="container profile-container" ng-if="user.sitter === true">
+    <div class="panel panel-default">
+      <div class="panel-heading" ng-click="convertAddressToCoords()">Location</div>
+      <div class="panel-body">
+        <legend class="profileLegend"><i class="ion-clipboard"></i> Edit Sitter Location</legend>
+        <form method="post" ng-submit="updateProfile()">
+
+          <div class="form-group">
+            <label class="control-label"> Location</label>
+            <input type="text" class="form-control" ng-model="user.sitterLocation.address" />
+          </div>
+          <div class="form-group">
+            <label class="control-label"></i> Availability</label>
+            <input type="text" class="form-control" ng-model="user.availability" />
+          </div>
+          <div class="form-group">
+            <label class="control-label"></i> Rate</label>
+            <input type="text" class="form-control" ng-model="user.rate" />
+          </div>
+          <div class="form-group">
+          </div>
+          <button class="btn btn-lg btn-success">Update Information</button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">Accounts</div>
-    <div class="panel-body">
-      <legend><i class="ion-link"></i> Linked Accounts</legend>
-      <div class="btn-group-vertical">
+  <div class="container profile-container" ng-if="user.sitter === true">
+    <div class="panel panel-default">
+      <div class="panel-heading">Sitter</div>
+      <div class="panel-body">
+        <legend><i class="ion-clipboard"></i> Edit Sitter Info</legend>
+        <form method="post" ng-submit="updateProfile()">
 
-        <button class="btn btn-sm btn-danger" ng-if="user.google" ng-click="unlink('google')">
-          <i class="ion-social-googleplus"></i> Unlink Google Account
-        </button>
-        <button class="btn btn-sm btn-primary" ng-if="!user.google" ng-click="link('google')">
-          <i class="ion-social-googleplus"></i> Link Google Account
-        </button>
+          <div class="form-group userImageContainer">
+            <label class="control-label">Sitter Picture</label>
+            <img class="profile-picture" ng-src="{{user.picture || 'http://www.fillmurray.com/150/150'}}">
+            <label class="control-label"> Image Url</label>
+            <input type="text" class="form-control" ng-model="user.picture" />
+          </div>
 
+          <div class="form-group">
+            <label class="control-label"><i class="ion-person"></i> Sitter Name</label>
+            <input type="text" class="form-control" ng-model="user.sitterName" />
+          </div>
+
+          <div class="form-group">
+            <label class="control-label"><i class="ion-person"></i> Sitter Description</label>
+            <input type="text" class="form-control" ng-model="user.sitterDescription" />
+          </div>
+
+          <div class="form-group">
+          </div>
+          <button class="btn btn-lg btn-success">Update Information</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- User = !Sitter -->
+
+  <div class="container profile-container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Profile</div>
+      <div class="panel-body">
+        <legend><i class="ion-clipboard"></i> Edit My Profile</legend>
+        <form method="post" ng-submit="updateProfile()">
+          <div class="form-group">
+            <label class="control-label">Profile Picture</label>
+            <img class="profile-picture" ng-src="{{user.picture || 'http://www.fillmurray.com/150/150'}}">
+          </div>
+          <div class="form-group">
+            <label class="control-label"><i class="ion-person"></i> Name</label>
+            <input type="text" class="form-control" ng-model="user.displayName" />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Username</label>
+            <input type="text" class="form-control" ng-model="user.username" />
+          </div>
+          <div class="form-group">
+            <label class="control-label"><i class="ion-at"></i> Email Address</label>
+            <input type="email" class="form-control" ng-model="user.email" />
+          </div>
+          <div class="form-group">
+            <label class="control-label"> Phone</label>
+            <input type="text" class="form-control" ng-model="user.phone" />
+          </div>
+          <div class="form-group">
+            <label class="control-label"> Notes</label>
+            <input type="text" class="ion-clipboard" ng-model="user.description" />
+          </div>
+
+          <button class="btn btn-lg btn-success">Update Information</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container profile-container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Accounts</div>
+      <div class="panel-body">
+        <legend><i class="ion-link"></i> Linked Accounts</legend>
+
+        <div class="btn-group-vertical">
+          <button class="btn btn-lg btn-success" ng-click="deleteProfile(user.id)">Delete Account</button>
+        </div>
       </div>
     </div>
   </div>

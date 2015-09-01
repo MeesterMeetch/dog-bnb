@@ -40,6 +40,7 @@
     "angular-google-maps": "~2.1.5",
     "lodash": "~3.10.0",
     "jsjws": "~3.2.2",
-    "angular": "~1.4.3"
+    "angular": "~1.4.3",
+    "underscore": "~1.8.3"
   }
 }

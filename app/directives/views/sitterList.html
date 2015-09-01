@@ -1,0 +1,15 @@
+<div class="sitterListWrapper">
+
+<div class="panel-default row">
+  <div class="sitterListWrapper" ng-repeat="sitter in sitters" data-id="{{sitter._id}}">
+    <aside class="sitterImage" style='background-image:url({{sitter.sitterImage}})'>
+      <img src="{{sitter.sitterImage}}" class="sitterImage">
+    </aside>
+    <aside class="sitterInfo">
+      <h1 class="sitterTitle">{{sitter.sitterName}}</h1>
+      <h4 class="sitterLocation">{{sitter.sitterLocation.address}}</h4>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>

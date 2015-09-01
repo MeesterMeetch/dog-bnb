@@ -1,43 +1,45 @@
-// (function() {
-//   'use strict';
-//     angular
-//     .module('home')
-//     .controller('HomeController', function(HomeService, Account, $scope, $rootScope, $location, $routeParams, $auth) {
-//         $scope.map = {
-//           center: {
-//             latitude: 32.7833,
-//             longitude: -79.931051
-//           },
-//           zoom: 10,
-//           scrollwheel: false
-//         };
-//
-//       new  HomeService().then(function(sitters) {
-//           console.log("Obtaining Sitters!!!!!!!!!!");
-//           console.log(sitters.data);
-//           $scope.sitters = sitters.data
-//         })
-//     });
-// }());
-
-
 (function() {
   'use strict';
     angular
     .module('home')
-    .controller('HomeController', function(HomeService, Account, $scope, $rootScope, $location, $routeParams, $auth) {
-        $scope.map = {
-          center: {
-            latitude: 34.80,
-            longitude: -80.50
-          },
-          zoom: 15,
-          scrollwheel: false
-        };
-        new  HomeService().then(function(sitters) {
-            console.log("Obtaining Sitters!!!!!!!!!!");
-            console.log(sitters.data);
-            $scope.sitters = sitters.data;
-          });
+    .controller('HomeController', function(HomeService, Account, $scope, $rootScope, $location, $routeParams, $auth, uiGmapGoogleMapApi) {
+
+      $scope.markers = [];
+
+      $scope.map = {
+        center: {
+          latitude: 32.792447,
+          longitude: -79.936134
+        },
+        zoom: 10,
+        scrollwheel: false,
+        markers: []
+      };
+
+      console.log("center of the map err:");
+        HomeService.getSitters().then(function(sitter) {
+          $scope.sitters = sitter.data
+          var sitters = sitter.data
+          console.log('sitter.data', sitter.data);
+          sitters.forEach(function(el) {
+            var sitter = el;
+            if (sitter.sitterLocation) {
+
+              var marker = {
+                idKey: 0,
+                coords: {
+                  latitude: sitter.sitterLocation.coords.latitude,
+                  longitude: sitter.sitterLocation.coords.longitude
+                },
+                icon: "#00B800"
+
+              };
+
+              $scope.markers.push(marker);
+              $scope.map.markers.push(marker);
+            }
+          })
+        });
+
     });
 }());

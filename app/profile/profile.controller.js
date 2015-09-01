@@ -1,6 +1,12 @@
 angular.module('profile')
-  .controller('ProfileController', function($scope, $rootScope, $auth, $alert, $modal, Account) {
+  .controller('ProfileController', function($scope, $rootScope, $auth, $alert, $modal, Account, $http) {
 
+
+    Account.getAllSitters()
+      .success(function(data) {
+        $scope.users = data;
+        console.log('users:', data);
+      })
     /**
      * Get user's profile information.
      */
@@ -40,10 +46,10 @@ angular.module('profile')
     };
 
 
-   $scope.logProfile = function () {
-     console.log($scope.user.displayName);
-    //  return $scope.user.displayName + "";
-   };
+  //  $scope.logProfile = function () {
+  //    console.log($scope.user.displayName);
+  //   //  return $scope.user.displayName + "";
+  //  };
 
 
     /**
@@ -51,33 +57,65 @@ angular.module('profile')
      */
     $scope.updateProfile = function() {
       var user = $scope.user;
-      // Account.addSitter(user);
+
+      if (user.sitter === true) {
+        $scope.convertAddressToCoords($scope.user.sitterLocation.address).success(function(googleObj) {
+          Account.addSitter(user);
+
+          Account.updateProfile({
+            displayName: $scope.user.displayName,
+            // username: $scope.user.username,
+            email: $scope.user.email,
+            dogsName: $scope.user.dogsName,
+            phone: $scope.user.phone,
+            vetPhone: $scope.user.vetPhone,
+            // sitter: $scope.user.sitter,
+            address: $scope.user.address,
+            sitterDescription: $scope.user.sitterDescription,
+            rate: $scope.user.rate,
+            picture: $scope.user.picture,
+            availability: $scope.user.availability,
+            sitterLocation: {address: $scope.user.sitterLocation.address, coords: {latitude: googleObj.results[0].geometry.location.lat, longitude: googleObj.results[0].geometry.location.lng}}
+        })
+      })
+      } else {
+
+      Account.addSitter(user);
 
       Account.updateProfile({
         displayName: $scope.user.displayName,
+        username: $scope.user.username,
+        // username: $scope.user.username,
         email: $scope.user.email,
         dogsName: $scope.user.dogsName,
         phone: $scope.user.phone,
         vetPhone: $scope.user.vetPhone,
         sitter: $scope.user.sitter,
+        // sitter: $scope.user.sitter,
         address: $scope.user.address,
+        sitterDescription: $scope.user.sitterDescription,
         rate: $scope.user.rate,
         picture: $scope.user.picture,
         availability: $scope.user.availability,
-        sitterLocation: {address: $scope.user.address, coords: {latitude: '', longitude: ''}}
+        sitterLocation: {address: $scope.user.sitterLocation.address, coords: {latitude: googleObj.results[0].geometry.location.lat, longitude: googleObj.results[0].geometry.location.lng}}
       }).success(function() {
         console.log("SUCCESSFUL THINGS");
+
         $alert({
-          content: 'Profile has been updated',
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
+            content: 'Profile has been updated',
+            animation: 'fadeZoomFadeDown',
+            type: 'material',
+            duration: 3
+          });
         });
-        // }).error(function(err) {
-        //   console.log('I HAVE BUBBLED UP', err);
-        // });
-      });
+      }
     };
+
+    $scope.convertAddressToCoords = function(address) {
+      console.log("ADDRESS", address);
+      var regexAddress = address.replace(/\s/ig, "+");
+      return $http.get('/api/getCoords/' + regexAddress);
+    }
 
     /**
      * Link third-party provider.

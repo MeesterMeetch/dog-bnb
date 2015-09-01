@@ -5,8 +5,8 @@
 <div class="container logInContainer">
   <div class="row"
     <div class="center-form panel">
-      <div class="panel-body">
-        <h2 class="text-center">Log in</h2>
+      <div class="loginPanel panel-body">
+        <h3 class="text-center">Log in</h3>
         <form method="post" ng-submit="login()" name="loginForm">
           <div class="form-group has-feedback">
             <input class="form-control input-lg" type="text" name="email" ng-model="email" placeholder="Email" required autofocus>
@@ -30,10 +30,6 @@
             <small>Don't have an account yet? <a href="/#/signup">Sign up</a></small>
           </p>
 
-          <div class="signup-or-separator">
-            <h6 class="text">or</h6>
-            <hr>
-          </div>
         </form>
 
         <button class="btn btn-block btn-google-plus" ng-click="authenticate('google')">

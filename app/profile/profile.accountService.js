@@ -10,10 +10,13 @@ angular.module('profile')
       deleteProfile: function(profileData) {
         return $http.delete('/api/me');
       },
+      getAllSitters: function() {
+        return $http.get('/api/sitters');
+      },
       addSitter: function (user) {
         var geocoder = new google.maps.Geocoder()
-        geocoder.geocode({address: user.address}, function (result) {
-          user.coords = {
+        geocoder.geocode({address: user.sitter.address}, function (result) {
+          user.sitterLocation.coords = {
             latitude: result[0].geometry.location.lat(),
             longitude: result[0].geometry.location.lng()
           };

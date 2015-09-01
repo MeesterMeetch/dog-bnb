@@ -1,38 +1,42 @@
-<div class="container homeMap">
-  <div ng-controller="ProfileController" class="panel panel-default">
-    <div class="panel-heading">Hosts<span id="greeting">{{user.displayName}}</span></div>
-    <div class="panel-body">
-      <div class="row" ng-controller="ProfileController">
-        <div class="col-sm-7">
-          <div id="map_canvas">
-            <div >
-            <script type="text/ng-template" id="searchbox.tpl.html">
-            <input class="mapSearchBox" type="text" placeholder="Search Box">
-              </script>
-               <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" events="map.events">
-                 <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_CENTER"></ui-gmap-search-box>
-                   <ui-gmap-marker coords="user.sitterLocation.coords" idkey="user._id" ng-repeat="user in users" markerlabel="user.displayName">
-                   </ui-gmap-marker>
-               </ui-gmap-google-map>
-            </div>
-          </div>
-        </div>
+<div class="homePageLeft container col-lg-2">
 
-          <div class="col-sm-5 sitters">
-            <!-- <input type="text" name="name" value="" placeholder="Keyword..." class="filterSearch" ng-model="searchFilter"> -->
-            <div class="sitterSidebar">
-              <h3>Name:<strong>{{user.sitterName}}</strong></h3>
-              <ul>
-                <li class="sitterPhone">Phone: {{phone}}</li>
-                <li class="sitterLocation">Location:{{user.userLocation.address}}</li>
-                <li class="sitterAvailability">Availability:{{user.availability}}</li>
-                <li class="sitterRates">Rate:{{user.rate}}</li>
-              </ul>
-            </div>
+</div>
+<div class="homePageContainer container col-lg-8" ng-controller="ProfileController">
 
-          </div>
 
+    <div class="homeSitterInformation panel-default container col-lg-7 col-md-6 col-sm-12">
+
+      <div ng-controller="ProfileController" class="panel panel-default homeProfController">
+          <div class="homeSitterInformationInnerWrapper" ng-controller="ProfileController">
+
+              <div class="col-sm-12 sitters outerHomeAside">
+                <div class="sitterSidebar" ng-repeat="user in users">
+                  <div class="eachSitterListed">
+                    <h3>Name: <strong>{{user.displayName}}</strong></h3>
+                      <ul>
+                        <li class="sitterPhone">Phone: {{user.phone}}</li>
+                        <li class="sitterLocation">Location: {{user.sitterLocation.address}}</li>
+                        <li class="sitterAvailability">Availability: {{user.availability}}</li>
+                        <li class="sitterRates">Rate: {{user.rate}}</li>
+                      </ul>
+                  </div>
+
+                </div>
+
+              </div>
       </div>
-    </div>
+      </div>
+
   </div>
+
+  <div class="map container panel-default col-lg-5 col-md-5 col-sm-12">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' fit=true scrollwheel=false class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <ui-gmap-marker model="marker" ng-repeat="marker in markers" coords="marker.coords" idkey="marker.idKey" options="marker.options">
+
+          </ui-gmap-marker>
+        </ui-gmap-google-map>
+  </div>
+</div>
+<div class="homePageRight container col-lg-2">
+
 </div>

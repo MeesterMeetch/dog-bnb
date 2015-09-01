@@ -1,94 +1,65 @@
-<!-- owner-signup -->
+angular.module('auth')
+  .controller('OwnerSignupCtrl', function($scope, $alert, $auth) {
+    $scope.signup = function() {
+      $auth.signup({
+        displayName: $scope.displayName,
+        email: $scope.email,
+        dogsName: $scope.dogsName,
+        phone: $scope.phone,
+        vetPhone: $scope.vetNumber,
+        password: $scope.password,
+        isSitter: false
+      }).catch(function(response) {
+        if (typeof response.data.message === 'object') {
+          angular.forEach(response.data.message, function(message) {
+            $alert({
+              content: message[0],
+              animation: 'fadeZoomFadeDown',
+              type: 'material',
+              duration: 3
+            });
+          });
+        } else {
+          $alert({
+            content: response.data.message,
+            animation: 'fadeZoomFadeDown',
+            type: 'material',
+            duration: 3
+          });
+        }
+      });
+    };
 
-<div class="container-fluid dogOwnerSignup">
-  <div class="row">
-    <div class="center-form panel">
-      <div class="panel-body">
-        <h2 class="text-center">Sign up as an Owner</h2>
-        <form method="post" ng-submit="signup()" name="signupForm">
+    $scope.sitterSignup = function() {
+      console.log('IVE BEEN PRESSED');
+      $auth.signup({
+        displayName: $scope.displayName,
+        email: $scope.email,
+        phone: $scope.phone,
+        rate: $scope.rate,
+        address: $scope.address,
+        availability: $scope.availability,
+        password: $scope.password,
+        isSitter: true
+      }).catch(function(response) {
+        if (typeof response.data.message === 'object') {
+          angular.forEach(response.data.message, function(message) {
+            $alert({
+              content: message[0],
+              animation: 'fadeZoomFadeDown',
+              type: 'material',
+              duration: 3
+            });
+          });
+        } else {
+          $alert({
+            content: response.data.message,
+            animation: 'fadeZoomFadeDown',
+            type: 'material',
+            duration: 3
+          });
+        }
+      });
+    };
 
-          <!-- name -->
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
-            <input class="form-control input-lg" type="text" name="displayName" ng-model="displayName" placeholder="Name" required autofocus>
-            <span class="ion-person form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
-              <div ng-message="required">You must enter your name.</div>
-            </div>
-          </div>
-
-          <!-- e-mail -->
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
-            <input class="form-control input-lg" type="email" id="email" name="email" ng-model="email" placeholder="Email" required
-            ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-            <span class="ion-at form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
-              <div ng-message="required">Your email address is required.</div>
-              <div ng-message="pattern">Your email address is invalid.</div>
-            </div>
-          </div>
-
-          <!-- dog's name -->
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
-            <input class="form-control input-lg" type="text" name="dogsName" ng-model="dogName" placeholder="Dog's Name" required autofocus>
-            <span class="ion-person form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
-              <div ng-message="required">You must enter your Dog's Name.</div>
-            </div>
-          </div>
-
-          <!-- phone -->
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
-            <input class="form-control input-lg" type="text" name="phone" ng-model="phone" placeholder="Phone #" required autofocus>
-            <span class="ion-person form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
-              <div ng-message="required">You must enter your phone number.</div>
-            </div>
-          </div>
-
-          <!-- vet phone number -->
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
-            <input class="form-control input-lg" type="text" name="vetNumber" ng-model="vetNumber" placeholder="Vet Phone Number" required autofocus>
-            <span class="ion-person form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
-              <div ng-message="required">You must enter Vet's Phone Number.</div>
-            </div>
-          </div>
-
-
-          <!-- address ... try to get geocache'd location-->
-          <!-- <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
-            <input class="form-control input-lg" type="text" name="address" ng-model="address" placeholder="Full Address" required autofocus>
-            <span class="ion-person form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
-              <div ng-message="required">You must enter your full address.</div>
-            </div>
-          </div> -->
-
-          <!-- password -->
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
-            <input password-strength class="form-control input-lg" type="password" name="password" ng-model="password" placeholder="Password" required>
-            <span class="ion-key form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
-              <div ng-message="required">Password is required.</div>
-            </div>
-          </div>
-
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
-            <input password-match="password" class="form-control input-lg" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password">
-            <span class="ion-key form-control-feedback"></span>
-            <div class="help-block text-danger" ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
-              <div ng-message="compareTo">Password must match.</div>
-            </div>
-          </div>
-
-          <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></small></p>
-
-          <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Sign up</button>
-          <br/>
-
-          <p class="text-center text-muted">Already have an account? <a href="/#/login">Log in now</a></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+});

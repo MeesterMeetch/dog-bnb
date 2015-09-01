@@ -1,91 +1,214 @@
-@import "partials/reset";
-@import "partials/auth";
-@import "partials/palette";
+@import "partials/reset.scss";
+@import "partials/palette.scss";
+@import "partials/navbar.scss";
+@import "partials/video.scss";
 
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  background: #e4e7ec;
-  height: 100vh;
+  // background: radial-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .1)), url('../images/dog_flowers_inverted.png') no-repeat no-repeat fixed;
+  background-size: cover;
+  // background-color: #76a5c4;
+  //  background-color: #F6F8FB;
+  // background-color: $color0;
+  background-color: $brownSugar;
+  font-size: 2em;
+  z-index: -1;
+}
+
+.headerFiller {
+  height: 50px;
+}
+
+.angular-google-map-container {
+   height: 520px;
+  background-color: $color13;
+  border-radius: 3%;
+ }
+
+ .sitterSidebar{
+   clear:right;
+   background-color: rgb(244, 241, 187);
+   background: linear-gradient(to right, rgba(244, 241, 187, 1), rgba(244, 241, 187, 1));
+   border-radius: 6px 90px 0px 60px;
+   -moz-border-radius: 6px 90px 0px 60px;
+   -webkit-border-radius: 6px 90px 0px 60px;
+  //  background: radial-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .1)), url('../images/Engagement-Rings-Cushion-Cut_D_1.jpg');
+    // background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg');
+    background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/innerDiamond.png');
+    // background: url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg');
+    // no-repeat no-repeat fixed;
+   background-size: cover;
+  //  z-index: 2;
+    // opacity: .9;
+
+ }
+
+ .outerHomeAside{
+   height:690px;
+   clear:right;
+   overflow-y: scroll;
+  // background: radial-gradient( rgba(255, 255, 255, 1.2), rgba(255, 255, 255, 1.2)),
+  // background: url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg'), repeat fixed;
+  // background-size: stretch;
+  border-radius: 40px;
+  // opacity: .5;
+
+
+ }
+
+ // +++ ##### This is the Home Page ###### +++  //
+ .homePageContainer {
+   display: flex;
+   justify-content: center;
+   height: 620px;
+   margin-top: 2.5%;
+   // background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/innerDiamond.png') repeat fixed;
+  //  background-color: #F6F8FB;
+
+ }
+ // +++ ##### This is the main panel on Home ###### +++  //
+ .panel-default h2 {
+   width: 100%;
+   text-align: center;
+   color: $color4;
+   border-bottom: 2px solid $color4;
+ }
+
+ .homeSitterInformation {
+   border-radius: 10px;
+   height: 520px;
+   opacity: .7;
+   overflow: hidden;
+   .sitterWrapper {
+     border-radius: 2px;
+    //  padding: 2%;
+     img {
+       width: 30px;
+       height: 30px;
+     }
+   }
+   ul {
+     padding: 0;
+     width: 100%;
+   }
+   ul li {
+     list-style-type: none;
+     text-align: center;
+     color: $darkSapphire;
+     // color: $color4;
+     padding: 0;
+     margin: 0;
+   }
+ }
+
+ .homePageLeft {
+   display: block;
+   height: 692px;
+   // margin-top: 1%;
+   background: url('../images/dog_flowers_left.png');
+
+   // background-color: #F6F8FB;
+
+ }
+
+ .homePageRight {
+     display: block;
+     height: 692px;
+     background: url('../images/dog_flowers_right.png');
+     background-size: cover;
+ }
+
+
+ .eachSitterListed{
+   border-radius: 3%;
+
+     h3{
+       color: $sapphire;
+     }
+ }
+
+.logInContainer {
+  width: 45%;
+  background-color: $color21;
+  margin-top: 100px;
+  border-radius: 3%;
+  border-color: rgba(207, 217, 215, .3);
+  box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
+}
+
+.btn-success {
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+  color: $color20;
 }
 
 a {
-  color: #000;
+  color: $color4;
+  &:hover {
+    color: $color14;
+  }
 }
 
 .text-muted {
-  color: #90939a;
+  color: $color4;
 }
 
-.navbar {
-  border: 0;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
-}
-
-.navbar-header {
-  float: left;
-  padding-left: 15px;
-}
-
-.navbar-nav {
-  float: left;
-  margin: 0;
-}
-
-.navbar-nav > li {
-  float: left;
-}
-
-.navbar-nav > li > a {
-  padding: 15px;
-}
-
-.navbar-default {
-  color: #fff;
-  background: #fff;
-}
-
-.navbar-default .navbar-brand {
-  color: #fff;
-  background-color: #885A3B;
-}
-
-.navbar-default .navbar-brand:hover {
-  color: #885A3B;
-  background-color: #fff;
-}
-
-.navbar-brand {
-  margin-left: -15px;
-  transition: 0.25s all;
+.container-fluid {
+  padding: 0;
 }
 
 .panel {
   border-color: #cfd9D7;
   border-radius: 2px;
   box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
+  border: none;
+  color: $color4;
+  font-weight: bold;
 }
 
 .panel-default > .panel-heading {
   font-size: 85%;
   font-weight: bold;
-  color: #444;
+  // color: #444;
+  color: $color4;
   text-transform: uppercase;
   background-color: #f6f6f6;
   border-color: #cfd9db;
+  border: none;
+}
+
+
+.accordion{
+  display: inline-flex;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.panel-heading {
+  font-size: 85%;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-color: $color13;
+  background-color: $color4;
+  color: $color13;
 }
 
 .form-control {
   border-radius: 0;
 }
 
+.center-row {
+  display: flex;
+  justify-content: center;
+}
+
 .center-form {
-  width: 33%;
   margin: 2.5% auto;
 }
 
@@ -169,22 +292,32 @@ a {
   font-weight: bold;
   border-radius: 2px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+  background-color: $color14;
+  border: 1px solid $color4;
 }
 
 .btn-primary {
-  background-color: #4285f4;
+  background-color: $color14;
+  color: $color13;
+  border: 1px solid $color4;
+
 }
 
 .btn-primary:hover {
-  background-color: #3367d6;
+  background-color: $color11;
 }
 
 .btn-success {
-  background-color: #0f9d58;
+  background-color: $color14;
+  color: $color13;
+  border: 1px solid $color4;
+
 }
 
 .btn-success:hover {
-  background-color: #196c4a;
+  background-color: $color4;
+  transition: ease .25s;
+  border: 1px solid $color14;
 }
 
 .btn-danger {
@@ -222,78 +355,6 @@ a {
 .btn .fa {
   margin-right: 5px;
 }
-
-.logInContainer {
-  width: 45%;
-  background-color: white;
-  margin-top: 100px;
-}
-
-.homeMap {
-  width: 98%;
-}
-
-.sitterSidebar{
-  height:500px;
-  overflow: scroll;
-  clear:right;
-}
-
-.hide{
-  display: none;
-}
-
-#greeting {
-  float: right;
-}
-
-.mustLogin {
-  margin-top: 50px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-          flex-direction: column;
-  text-align: center;
-}
-
-.oopsButton {
-  margin-top: 25px;
-}
-
-.video {
-  position: fixed;
-  top: 50%; left: 50%;
-  z-index: 1;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  transform: translate(-50%, -50%);
-}
-
-.filterSearch{
-  float:right;
-  width: 50%;
-}
-
-.modal-content{
-  padding: 10px 40px 10px 40px;
-}
-
 
 /*********************
 * Social Buttons
@@ -394,19 +455,9 @@ a {
   background-color: #125acd;
 }
 
-.angular-google-map-container {
-  height: 500px;
-  }
-
-.mapSearchBox {
-  width: 60%;
-  margin-top: .4rem;
+.signUpPanel {
+  background-color: rgba(255, 255, 255, .8);
 }
-
-.panel-body{
-
-}
-
 /*********************
 * Animations
 *********************/
@@ -449,39 +500,33 @@ a {
 
 
 
-// Events
 
-.hidden {
-    display:none;
+.userProfileForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.active {
-    display:block;
+.form-group {
+  width: 100%;
 }
 
-#overlay {
-    //  visibility: hidden;
-    //  position: absolute;
-     position: fixed;
-     left: 0px;
-     top: 0px;
-     width:100%;
-     height:100%;
-     text-align:center;
-     z-index: 1000;
-     opacity: .8;
+.userImageContainer {
+  width: 30%;
 }
 
-#overlay div {
-  position: absolute;
-    width: 100%;
-    height: 100%;
-    //  width:300px;
-    margin: 0 auto;
-    background-color: $color11;
-    opacity: .8;
-    border:1px solid #000;
-    padding:15px;
-    text-align:center;
-    vertical-align: middle;
+.activateButtons {
+  float: right;
+  margin: 2%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  button {
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 75%;
+  }
 }

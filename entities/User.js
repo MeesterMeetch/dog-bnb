@@ -10,11 +10,11 @@ var userSchema = new mongoose.Schema({
   dogsName: String,
   phone: String,
   vetPhone: String,
-  sitter: Boolean,
   rate: String,
   picture: String,
   availability: String,
   sitterLocation: {address: String, coords: {latitude: Number, longitude: Number}},
+  sitter: Boolean,
 
   facebook: String,
   foursquare: String,
