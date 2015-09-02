@@ -40,8 +40,5 @@
     "jshint-stylish": "^1.0.1",
     "wiredep": "^2.2.2",
     "yargs": "^3.5.4"
-  },
-  "resolutions": {
-    "angular": "1.2.0-rc.2"
   }
 }
