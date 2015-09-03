@@ -19,42 +19,6 @@ body {
   height: 50px;
 }
 
-.angular-google-map-container {
-   height: 520px;
-  background-color: $color13;
-  border-radius: 3%;
- }
-
- .sitterSidebar{
-   clear:right;
-   background-color: rgb(244, 241, 187);
-   background: linear-gradient(to right, rgba(244, 241, 187, 1), rgba(244, 241, 187, 1));
-   border-radius: 6px 90px 0px 60px;
-   -moz-border-radius: 6px 90px 0px 60px;
-   -webkit-border-radius: 6px 90px 0px 60px;
-  //  background: radial-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .1)), url('../images/Engagement-Rings-Cushion-Cut_D_1.jpg');
-    // background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg');
-    background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/innerDiamond.png');
-    // background: url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg');
-    // no-repeat no-repeat fixed;
-   background-size: cover;
-  //  z-index: 2;
-    // opacity: .9;
-
- }
-
- .outerHomeAside{
-   height:690px;
-   clear:right;
-   overflow-y: scroll;
-  // background: radial-gradient( rgba(255, 255, 255, 1.2), rgba(255, 255, 255, 1.2)),
-  // background: url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg'), repeat fixed;
-  // background-size: stretch;
-  border-radius: 40px;
-  // opacity: .5;
-
-
- }
 
  // +++ ##### This is the Home Page ###### +++  //
  .homePageContainer {
@@ -78,7 +42,7 @@ body {
    border-radius: 10px;
    height: 520px;
    opacity: .7;
-   overflow: hidden;
+   overflow: scroll;
    .sitterWrapper {
      border-radius: 2px;
     //  padding: 2%;
@@ -116,6 +80,45 @@ body {
      height: 692px;
      background: url('../images/dog_flowers_right.png');
      background-size: cover;
+ }
+
+ .angular-google-map-container {
+    height: 520px;
+   background-color: $color13;
+   border-radius: 3%;
+  }
+
+  .sitterSidebar{
+    clear:right;
+    background-color: rgb(244, 241, 187);
+    background: linear-gradient(to right, rgba(244, 241, 187, 1), rgba(244, 241, 187, 1));
+    border-radius: 6px 90px 0px 60px;
+    -moz-border-radius: 6px 90px 0px 60px;
+    -webkit-border-radius: 6px 90px 0px 60px;
+   //  background: radial-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .1)), url('../images/Engagement-Rings-Cushion-Cut_D_1.jpg');
+     // background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg');
+     background: radial-gradient( rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url('../images/innerDiamond.png');
+     // background: url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg');
+     // no-repeat no-repeat fixed;
+    background-size: cover;
+   //  z-index: 2;
+     // opacity: .9;
+
+  }
+
+  .outerHomeAside{
+    height:690px;
+    clear:right;
+   //  overflow-y: scroll;
+   // background: radial-gradient( rgba(255, 255, 255, 1.2), rgba(255, 255, 255, 1.2)),
+   // background: url('../images/Engagement-Rings-Cushion-Cut_D_inverse.jpg'), repeat fixed;
+   // background-size: stretch;
+   border-radius: 40px;
+   // opacity: .5;
+  }
+
+ .homeSitterInformationInnerWrapper {
+   // overflow-y: scroll;
  }
 
 
