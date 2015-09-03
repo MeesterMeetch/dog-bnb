@@ -4,7 +4,7 @@ var User = require('../entities/User');
 var config = require('../config');
 var request = require('request');
 var ensureAuthenticated = require('./helpers').ensureAuthenticated;
-var _ = require('../app/vendor/underscore/underscore-min.js');
+var _ = require('../app/vendor/underscore/underscore.js');
 
 /*
  |--------------------------------------------------------------------------
