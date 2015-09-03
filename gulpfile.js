@@ -166,6 +166,6 @@ function startBrowserSync() {
   };
 
   setTimeout(function() {
-    browserSync(options)
-  }, 100);
+    browserSync(options);
+  }, 1000);
 }
