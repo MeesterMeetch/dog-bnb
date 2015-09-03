@@ -127,7 +127,7 @@ body {
   border-radius: 10px;
   height: 520px;
   opacity: .7;
-  overflow: hidden; }
+  overflow: scroll; }
   .homeSitterInformation .sitterWrapper {
     border-radius: 2px; }
     .homeSitterInformation .sitterWrapper img {
