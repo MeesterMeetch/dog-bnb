@@ -89,14 +89,15 @@ body {
 
 .sitterSidebar {
   clear: right;
-  background-color: #f4f1bb;
+  background-color: white;
+  /*background-color: #f4f1bb;
   background: -webkit-linear-gradient(left, #f4f1bb, #f4f1bb);
-  background: linear-gradient(to right, #f4f1bb, #f4f1bb);
+  background: linear-gradient(to right, #f4f1bb, #f4f1bb);*/
   border-radius: 6px 90px 0px 60px;
   -moz-border-radius: 6px 90px 0px 60px;
   -webkit-border-radius: 6px 90px 0px 60px;
-  background: -webkit-radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url("../images/innerDiamond.png");
-  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url("../images/innerDiamond.png");
+  /*background: -webkit-radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url("../images/innerDiamond.png");
+  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url("../images/innerDiamond.png");*/
   background-size: cover; }
 
 .outerHomeAside {
